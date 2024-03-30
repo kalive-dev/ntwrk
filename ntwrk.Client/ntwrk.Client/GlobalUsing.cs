@@ -1,0 +1,23 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.ComponentModel;
+global using System.Linq;
+global using System.Runtime.CompilerServices;
+global using System.Text;
+global using System.Threading.Tasks;
+global using System.Windows.Input;
+global using ntwrk.Client.Services.Authenticate;
+global using Newtonsoft.Json;
+global using ServiceProvider = ntwrk.Client.Services.ServiceProvider;
+/*global using ntwrk.Client.Helpers;
+global using System.Collections.ObjectModel;
+global using ntwrk.Client.Models;
+global using ntwrk.Client.Services.ListChat;
+global using System.Web;
+global using ntwrk.Client.Pages;
+global using ntwrk.Client.ViewModels;
+global using ntwrk.Client.Services.Message;
+global using Microsoft.AspNetCore.SignalR;
+global using Microsoft.AspNetCore.SignalR.Client;
+global using ntwrk.Client.Services.ChatHub;
+*/

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ntwrk.Api", "ntwrk.Api\ntwrk.Api.csproj", "{AE22C401-1DB7-4CCB-8081-50F9858CB01F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE22C401-1DB7-4CCB-8081-50F9858CB01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE22C401-1DB7-4CCB-8081-50F9858CB01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE22C401-1DB7-4CCB-8081-50F9858CB01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE22C401-1DB7-4CCB-8081-50F9858CB01F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F4F07DE-A2F3-4354-A1A9-9BC30ABEC085}
+	EndGlobalSection
+EndGlobal
