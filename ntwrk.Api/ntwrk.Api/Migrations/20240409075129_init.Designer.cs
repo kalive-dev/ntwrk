@@ -12,7 +12,7 @@ using ntwrk.Api.Entities;
 namespace ntwrk.Api.Migrations
 {
     [DbContext(typeof(ntwrkContext))]
-    [Migration("20240330024240_init")]
+    [Migration("20240409075129_init")]
     partial class init
     {
         /// <inheritdoc />

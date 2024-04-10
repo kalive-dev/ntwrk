@@ -30,11 +30,12 @@ namespace ntwrk.Client.Services
 
         public async Task <AuthenticateResponse> Authenticate(AuthenticateRequest request)
         {
-            using (HttpClient client = new HttpClient())
+            var devSslHelper = new DevHttpsConnectionHelper(sslPort: 7136);
+            using (HttpClient client = devSslHelper.HttpClient)
             {
                 var httpRequestMessage = new HttpRequestMessage();
                 httpRequestMessage.Method = HttpMethod.Post;
-                httpRequestMessage.RequestUri = new Uri(_serverRootUrl + "/Authenticate/Autheticate");
+                httpRequestMessage.RequestUri = new Uri(devSslHelper.DevServerRootUrl + "/Authenticate/Authenticate");
                 if (request != null)
                 {
                     string jsonContent = JsonConvert.SerializeObject(request);

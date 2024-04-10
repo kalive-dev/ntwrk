@@ -10,7 +10,7 @@ builder.Services.AddDbContext<ntwrkContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionString"]);
 });
-
+builder.Services.AddTransient<IUserFunction, UserFunction>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

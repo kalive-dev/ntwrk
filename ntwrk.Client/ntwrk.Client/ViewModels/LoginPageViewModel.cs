@@ -11,41 +11,44 @@ namespace ntwrk.Client.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private ServiceProvider _serviceProvider;
         public LoginPageViewModel()
         {
-            Username = "";
-            Password = "";
+            UserName = "wanda";
+            Password = "Abc12345";
             IsProcessing = false;
-
+             
             LoginCommand = new Command(() =>
             {
-                if (isProcessing) return;
+                if (IsProcessing) return;
 
-                if (Username.Trim() == "" || Password.Trim() == "") return;
-                isProcessing = true;
+                if (UserName.Trim() == "" || Password.Trim() == "") return;
+
+                IsProcessing = true;
                 Login().GetAwaiter().OnCompleted(() =>
                 {
-                    isProcessing = false;
+                    IsProcessing = false;
                 });
             });
         }
 
         async Task Login()
         {
-            try {
-
-            var request = new AuthenticateRequest
+            try
             {
-                LoginId = Username,
-                Password = Password
-            };
-            var response = await ServiceProvider.GetInstance().Authenticate(request);
+
+                var request = new AuthenticateRequest
+                {
+                    LoginId = UserName,
+                    Password = Password
+                };
+                var response = await ServiceProvider.GetInstance().Authenticate(request);
                 if (response.StatusCode == 200)
                 {
                     await AppShell.Current.DisplayAlert("NTWRK",
@@ -53,36 +56,41 @@ namespace ntwrk.Client.ViewModels
                         $"Username: {response.Username} \n" +
                         $"Token: {response.Token}", "OK");
                 }
-                else {
+                else
+                {
                     await AppShell.Current.DisplayAlert("NTWRK",
+                        $"{response.StatusCode}",
                         response.StatusMessage, "OK");
 
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 await AppShell.Current.DisplayAlert("NTWRK",
                         ex.Message, "OK");
             }
         }
-       
-        private string _username;
-        private string _password;
+
+        private string userName;
+        private string password;
         private bool isProcessing;
 
-        public string Username
+        public string UserName
         {
-            get { return _username; }
-            set { _username  = value; OnPropertyChanged(nameof(Username));}
+            get { return userName; }
+            set { userName = value; OnPropertyChanged(); }
         }
 
         public string Password
         {
-            get { return _password; }
-            set { Password = value; OnPropertyChanged(); }
+            get { return password; }
+            set { password = value; OnPropertyChanged(); }
         }
+
         public bool IsProcessing
         {
             get { return isProcessing; }
-            set { isProcessing = value; OnPropertyChanged();}
+            set { isProcessing = value; OnPropertyChanged(); }
         }
 
         public ICommand LoginCommand { get; set; }

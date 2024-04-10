@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModel="clr-namespace:ntwrk.Client.ViewModels"
-             x:Class="ntwrk.Client.Pages.LoginPage"
-             Title="LoginPage"
-             Background="#383F4D">
+<ContentPage
+    x:Class="ntwrk.Client.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:ntwrk.Client.ViewModels"
+    Title="LoginPage"
+    Background="Black">
     <ContentPage.BindingContext>
         <viewModel:LoginPageViewModel/>
     </ContentPage.BindingContext>
@@ -12,14 +13,9 @@
         <VerticalStackLayout Margin="30" VerticalOptions="Center">
             <Label
                 FontSize="45"
+                TextColor="White"
                 HorizontalOptions="Center"
-                Text="NTWRK"
-                TextColor="White"/>
-
-            <Label
-                FontSize="20"
-                HorizontalOptions="Center"
-                Text="With SignalR" />
+                Text="NTWRK" />
 
             <Frame
                 Margin="0,45,0,0"
@@ -51,21 +47,13 @@
 
             <Button
                 Margin="0,30,0,0"
-                Background="#f0932b"
+                Background="White"
                 Command="{Binding LoginCommand}"
                 Text="Login"
-                TextColor="White" />
+                TextColor="Black" />
 
             <HorizontalStackLayout Margin="0,50,0,0" HorizontalOptions="Center">
-                <Line
-                    BackgroundColor="Gray"
-                    HeightRequest="0.5"
-                    WidthRequest="60" />
-                <Label Margin="10,0,10,0" Text="Or continue with" />
-                <Line
-                    BackgroundColor="Gray"
-                    HeightRequest="0.5"
-                    WidthRequest="60" />
+                <Label Margin="10,0,10,0" TextColor="White" Text="Or continue with" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Margin="0,30,0,0" HorizontalOptions="Center">
@@ -84,7 +72,7 @@
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Margin="0,40,0,0" HorizontalOptions="Center">
-                <Label Text="Not a members?" />
+                <Label TextColor="White" Text="Not a members?" />
                 <Label
                     Margin="5,0,0,0"
                     Text="Register now"
@@ -98,5 +86,4 @@
             IsRunning="{Binding IsProcessing}"
             WidthRequest="60" />
     </Grid>
-
 </ContentPage>

@@ -79,7 +79,7 @@ namespace ntwrk.Api.Functions.User
         private string GenerateJwtToken(TblUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("1234567890123456");
+            var key = Encoding.ASCII.GetBytes("this is my custom Secret key for authentication");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
