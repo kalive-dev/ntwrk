@@ -18,12 +18,13 @@ namespace ntwrk.Client.ViewModels
         }
 
         private ServiceProvider _serviceProvider;
-        public LoginPageViewModel()
+
+        public LoginPageViewModel(ServiceProvider serviceProvider)
         {
             UserName = "wanda";
             Password = "Abc12345";
             IsProcessing = false;
-             
+
             LoginCommand = new Command(() =>
             {
                 if (IsProcessing) return;
@@ -36,38 +37,31 @@ namespace ntwrk.Client.ViewModels
                     IsProcessing = false;
                 });
             });
+            this._serviceProvider = serviceProvider;
         }
 
         async Task Login()
         {
             try
             {
-
                 var request = new AuthenticateRequest
                 {
                     LoginId = UserName,
-                    Password = Password
+                    Password = Password,
                 };
-                var response = await ServiceProvider.GetInstance().Authenticate(request);
+                var response = await _serviceProvider.Authenticate(request);
                 if (response.StatusCode == 200)
                 {
-                    await AppShell.Current.DisplayAlert("NTWRK",
-                        "Login sucessful! \n" +
-                        $"Username: {response.Username} \n" +
-                        $"Token: {response.Token}", "OK");
+                    await Shell.Current.GoToAsync($"ListChatPage?userId={response.Id}");
                 }
                 else
                 {
-                    await AppShell.Current.DisplayAlert("NTWRK",
-                        $"{response.StatusCode}",
-                        response.StatusMessage, "OK");
-
+                    await AppShell.Current.DisplayAlert("ChatApp", response.StatusMessage, "OK");
                 }
             }
             catch (Exception ex)
             {
-                await AppShell.Current.DisplayAlert("NTWRK",
-                        ex.Message, "OK");
+                await AppShell.Current.DisplayAlert("ChatApp", ex.Message, "OK");
             }
         }
 

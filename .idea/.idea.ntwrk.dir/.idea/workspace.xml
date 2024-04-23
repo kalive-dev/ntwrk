@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2889a097-4498-4a32-b514-b1fd731591f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api.sln" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/Controllers/Authenticate/AuthenticateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/Controllers/Authenticate/AuthenticateController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/GlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/GlobalUsing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/Migrations/ntwrkContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/Migrations/ntwrkContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Api/ntwrk.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/AppShell.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/AppShell.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/GlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/GlobalUsing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/MauiProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/Pages/LoginPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/Pages/LoginPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/Pages/LoginPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/Pages/LoginPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/Services/ServiceProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/Services/ServiceProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/ViewModels/LoginPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/ViewModels/LoginPageViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/ntwrk.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ntwrk.Client/ntwrk.Client/ntwrk.Client.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2fQHsr8bMf4Aq6B2rpsCZGH7lzV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\gudik\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\gudik\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\gudik\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2889a097-4498-4a32-b514-b1fd731591f8" name="Changes" comment="" />
+      <created>1713726594021</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713726594021</updated>
+      <workItem from="1713726597061" duration="30000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

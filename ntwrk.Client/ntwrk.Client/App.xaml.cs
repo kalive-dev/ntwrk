@@ -1,12 +1,11 @@
-﻿namespace ntwrk.Client
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
+﻿namespace ntwrk.Client;
 
-            MainPage = new AppShell();
-        }
-    }
+public partial class App : Application
+{
+	public App(AppShell appShell)
+	{
+		InitializeComponent();
+
+		MainPage =appShell;
+	}
 }

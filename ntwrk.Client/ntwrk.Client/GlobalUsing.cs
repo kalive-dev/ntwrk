@@ -10,7 +10,7 @@ global using ntwrk.Client.Services.Authenticate;
 global using Newtonsoft.Json;
 global using ServiceProvider = ntwrk.Client.Services.ServiceProvider;
 global using ntwrk.Client.Helpers;
-/*global using System.Collections.ObjectModel;
+global using System.Collections.ObjectModel;
 global using ntwrk.Client.Models;
 global using ntwrk.Client.Services.ListChat;
 global using System.Web;
@@ -20,4 +20,3 @@ global using ntwrk.Client.Services.Message;
 global using Microsoft.AspNetCore.SignalR;
 global using Microsoft.AspNetCore.SignalR.Client;
 global using ntwrk.Client.Services.ChatHub;
-*/

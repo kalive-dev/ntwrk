@@ -31,7 +31,7 @@ namespace ntwrk.Api.Functions.User
                 return new User
                 {
                     Id = entity.Id,
-                    Username = entity.UserName,
+                    UserName = entity.UserName,
                     Token = token
                 };
 
@@ -53,7 +53,7 @@ namespace ntwrk.Api.Functions.User
             var awayDuration = entity.IsOnline ? "" : Utilities.CalcAwayDuration(entity.LastLogonTime);
             return new User
             {
-                Username = entity.UserName,
+                UserName = entity.UserName,
                 Id = entity.Id,
                 AvatarSourceName = entity.AvatarSourceName,
                 IsAway = awayDuration != "" ? true : false,
