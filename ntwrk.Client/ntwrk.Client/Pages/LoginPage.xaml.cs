@@ -1,10 +1,11 @@
-using ntwrk.Client.ViewModels;
-
 namespace ntwrk.Client.Pages;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage() {
-        InitializeComponent();
-    }
+	public LoginPage(LoginPageViewModel viewModel)
+	{
+		InitializeComponent();
+
+		this.BindingContext = viewModel;
+	}
 }

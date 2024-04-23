@@ -10,6 +10,5 @@ namespace ntwrk.Client.Services
     {
         public int StatusCode { get; set; }
         public string StatusMessage { get; set; }
-
     }
 }

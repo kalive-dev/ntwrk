@@ -7,9 +7,8 @@
     xmlns:pages="clr-namespace:ntwrk.Client.Pages"
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarIsVisible="False"
-    Title="ntwrk.Client">
-    
+    Shell.TabBarIsVisible="False">
+
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate pages:LoginPage}"

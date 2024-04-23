@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ntwrk.Api.Controllers.Authenticate
 {
-   
     [ApiController]
     [Route("[controller]")]
     public class AuthenticateController : Controller

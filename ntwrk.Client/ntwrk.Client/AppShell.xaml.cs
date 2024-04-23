@@ -1,10 +1,25 @@
-﻿namespace ntwrk.Client
+﻿using ntwrk.Client.Pages;
+
+namespace ntwrk.Client;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell(LoginPage loginPage)
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        Routing.RegisterRoute("ListChatPage", typeof(ListChatPage));
+        Routing.RegisterRoute("ChatPage", typeof(ChatPage));
+
+        this.CurrentItem = loginPage;
     }
+
+    //public AppShell(ChatPage chatPage)
+    //{
+    //    InitializeComponent();
+
+    //    Routing.RegisterRoute("ListChatPage", typeof(ListChatPage));
+
+    //    this.CurrentItem = chatPage;
+    //}
 }

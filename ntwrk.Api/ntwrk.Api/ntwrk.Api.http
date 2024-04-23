@@ -1,7 +1,6 @@
-@ntwrk.Api_HostAddress = http://localhost:7093
+@ntwrk.Api_HostAddress = http://localhost:5136
 
 GET {{ntwrk.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
-      
