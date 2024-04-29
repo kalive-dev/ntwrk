@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="ntwrk.Client.Pages.LoginPage"
+    x:Class="ntwrk.Client.Pages.RegisterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:ntwrk.Client.ViewModels"
-    Title="LoginPage"
+    Title="Register"
     Background="#1B1E21">
     <Grid>
         <VerticalStackLayout Margin="30" VerticalOptions="Center">
@@ -13,7 +13,6 @@
                 FontSize="45"
                 HorizontalOptions="Center"
                 Text="NTWRK" />
-
             <Label
                 FontSize="20"
                 HorizontalOptions="Center"
@@ -25,12 +24,23 @@
                 BorderColor="Transparent">
                 <VerticalStackLayout>
                     <Entry
-                        Placeholder="User name"
+                        Placeholder="Username"
                         ReturnType="Go"
                         Text="{Binding UserName}"
                         TextColor="Black" />
                 </VerticalStackLayout>
-
+            </Frame>
+            <Frame
+                Margin="0,10,0,0"
+                Padding="10,0,10,0"
+                BorderColor="Transparent">
+                <VerticalStackLayout>
+                    <Entry
+                        Placeholder="Login"
+                        ReturnType="Go"
+                        Text="{Binding LoginId}"
+                        TextColor="Black" />
+                </VerticalStackLayout>
             </Frame>
 
             <Frame
@@ -47,52 +57,40 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Label
+            <Frame
                 Margin="0,10,0,0"
-                Text="Forgot password"
-                TextColor="#1e90ff" />
+                Padding="10,0,10,0"
+                BorderColor="Transparent">
+                <VerticalStackLayout>
+                    <Entry
+                        IsPassword="True"
+                        Placeholder="Confirm Password"
+                        ReturnType="Go"
+                        Text="{Binding ConfirmPassword}"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Frame>
 
             <Button
                 Margin="0,30,0,0"
                 Background="#383F4D"
-                Command="{Binding LoginCommand}"
-                Text="Login"
+                Command="{Binding RegisterCommand}"
+                Text="Register"
                 TextColor="White" />
 
-            <!--<HorizontalStackLayout Margin="0,50,0,0" HorizontalOptions="Center">
-                <Label Margin="10,0,10,0" Text="Or continue with" />
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout Margin="0,30,0,0" HorizontalOptions="Center">
-                <Frame Padding="15,10,15,10">
-                    <Image
-                        HeightRequest="32"
-                        Source="google_logo.png"
-                        WidthRequest="32" />
-                </Frame>
-                <Frame Margin="20,0,0,0" Padding="15,10,15,10">
-                    <Image
-                        HeightRequest="32"
-                        Source="apple_logo.png"
-                        WidthRequest="32" />
-                </Frame>
-            </HorizontalStackLayout>-->
-
             <HorizontalStackLayout Margin="0,40,0,0" HorizontalOptions="Center">
-                <Label Text="Still don’t have an account?" />
+                <Label Text="Already have an account?" />
                 <Label
-                    x:Name="registerLabel"
+                    x:Name="loginLabel"
                     Margin="5,0,0,0"
-                    Text="Register now"
+                    Text="Login"
                     TextColor="#1e90ff">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnRegisterLabelTapped" />
+                        <TapGestureRecognizer Tapped="OnLoginLabelTapped" />
                     </Label.GestureRecognizers>
                 </Label>
             </HorizontalStackLayout>
-
         </VerticalStackLayout>
-
         <ActivityIndicator
             HeightRequest="60"
             IsRunning="{Binding IsProcessing}"

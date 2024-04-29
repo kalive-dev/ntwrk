@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ntwrk.Client.Services.Message
+﻿namespace ntwrk.Client.Services.Message
 {
-    public class MessageInitializeReponse:BaseResponse
+    public class MessageInitializeReponse : BaseResponse
     {
         public User FriendInfo { get; set; }
-        public IEnumerable <Models.Message> Messages { get; set; }
+        public IEnumerable<Models.Message> Messages { get; set; }
     }
 }

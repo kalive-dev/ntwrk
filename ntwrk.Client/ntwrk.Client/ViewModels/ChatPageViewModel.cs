@@ -1,10 +1,4 @@
-﻿using ntwrk.Client.Services.Message;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿//using Foundation;
 namespace ntwrk.Client.ViewModels
 {
     public class ChatPageViewModel : INotifyPropertyChanged, IQueryAttributable
@@ -17,7 +11,7 @@ namespace ntwrk.Client.ViewModels
 
             FromUserId = int.Parse(HttpUtility.UrlDecode(query["fromUserId"].ToString()));
             ToUserId = int.Parse(HttpUtility.UrlDecode(query["toUserId"].ToString()));
-            
+
         }
 
         private ServiceProvider _serviceProvider;
@@ -36,6 +30,10 @@ namespace ntwrk.Client.ViewModels
             _chatHub.AddReceivedMessageHandler(OnReceiveMessage);
             _chatHub.Connect();
 
+            OpenListChatPageCommand = new Command(async () =>
+            {
+                await Shell.Current.Navigation.PopAsync();
+            });
             SendMessageCommand = new Command(async () =>
             {
                 try
@@ -46,7 +44,7 @@ namespace ntwrk.Client.ViewModels
 
                         Messages.Add(new Models.Message
                         {
-                            Content =Message,
+                            Content = Message,
                             FromUserId = FromUserId,
                             ToUserId = ToUserId,
                             SendDateTime = DateTime.Now
@@ -57,7 +55,7 @@ namespace ntwrk.Client.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    await AppShell.Current.DisplayAlert("ChatApp", ex.Message, "OK");
+                    await AppShell.Current.DisplayAlert("NTWRK", ex.Message, "OK");
                 }
             });
         }
@@ -71,7 +69,7 @@ namespace ntwrk.Client.ViewModels
             };
 
             var response = await _serviceProvider.CallWebApi<MessageInitializeRequest, MessageInitializeReponse>
-                ("/Message/Initialize",HttpMethod.Post, request);
+                ("/Message/Initialize", HttpMethod.Post, request);
 
             if (response.StatusCode == 200)
             {
@@ -80,10 +78,9 @@ namespace ntwrk.Client.ViewModels
             }
             else
             {
-                await AppShell.Current.DisplayAlert("ChatApp", response.StatusMessage, "OK");
+                await AppShell.Current.DisplayAlert("NTWRK", response.StatusMessage, "OK");
             }
         }
-
         public void Initialize()
         {
             Task.Run(async () =>
@@ -96,7 +93,7 @@ namespace ntwrk.Client.ViewModels
             });
         }
 
-        private void OnReceiveMessage (int fromUserId, string message)
+        private void OnReceiveMessage(int fromUserId, string message)
         {
             Messages.Add(new Models.Message
             {
@@ -106,6 +103,26 @@ namespace ntwrk.Client.ViewModels
                 SendDateTime = DateTime.Now
             });
         }
+        //private void OnReading() {
+        //    if(Messages.Last().IsRead == true)
+        //    {
+        //        _isRead = "Read";
+        //    } else
+        //    {
+        //        _isRead = "";
+        //    }
+        //}
+        //private void ScrollToEndOfMessages()
+        //{
+        //    if (_collectionView != null && Messages.Count > 0)
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            _collectionView.ScrollTo(Messages.Last(), ScrollToPosition.End, true);
+        //        });
+        //    }
+        //}
+
 
         private int fromUserId;
         private int toUserId;
@@ -113,7 +130,12 @@ namespace ntwrk.Client.ViewModels
         private ObservableCollection<Message> messages;
         private bool isRefreshing;
         private string message;
-
+        //private string _isRead = "";
+        //public string isRead
+        //{
+        //    get { return _isRead; }
+        //    set { _isRead = value; OnPropertyChanged(); }
+        //}
         public int FromUserId
         {
             get { return fromUserId; }
@@ -151,5 +173,6 @@ namespace ntwrk.Client.ViewModels
         }
 
         public ICommand SendMessageCommand { get; set; }
+        public ICommand OpenListChatPageCommand { get; set; }
     }
 }

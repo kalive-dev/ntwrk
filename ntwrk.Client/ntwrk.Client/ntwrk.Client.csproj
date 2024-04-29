@@ -57,6 +57,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Ubuntu-B.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-BI.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-L.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-LI.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-M.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-MI.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-R.ttf" />
+	  <None Remove="Resources\Fonts\Ubuntu-RI.ttf" />
+	  <None Remove="Resources\Images\default_user.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
@@ -72,6 +84,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

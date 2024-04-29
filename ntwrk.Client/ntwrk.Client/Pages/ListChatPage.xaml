@@ -6,7 +6,7 @@
     xmlns:helper="clr-namespace:ntwrk.Client.Helpers"
     xmlns:viewModels="clr-namespace:ntwrk.Client.ViewModels"
     Title="Chats"
-    Background="#13232f"
+    Background="#1B1E21"
     NavigatedTo="ContentPage_NavigatedTo">
     <ContentPage.IconImageSource>
         <FontImageSource
@@ -33,6 +33,7 @@
                     <Label
                         Margin="10,0,0,0"
                         FontAttributes="Bold"
+                        FontFamily="JosefinSansBold"
                         FontSize="20"
                         Text="{Binding UserInfo.UserName}"
                         VerticalOptions="Center" />
@@ -42,7 +43,7 @@
                     Orientation="Horizontal"
                     VerticalOptions="Center">
                     <Button
-                        BackgroundColor="#152c39"
+                        BackgroundColor="#40D9D9D9"
                         CornerRadius="45"
                         HeightRequest="32"
                         WidthRequest="32">
@@ -56,7 +57,7 @@
 
                     <Button
                         Margin="10,0,0,0"
-                        BackgroundColor="#152c39"
+                        BackgroundColor="#40D9D9D9"
                         CornerRadius="45"
                         HeightRequest="32"
                         WidthRequest="32">
@@ -71,11 +72,11 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <Frame
+                <Border
                     Padding="0"
-                    BackgroundColor="#152c39"
-                    BorderColor="Transparent"
-                    CornerRadius=" 45">
+                    BackgroundColor="#40D9D9D9"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 20,20,20,20">
 
                     <StackLayout
                         HeightRequest="48"
@@ -90,17 +91,18 @@
                                     FontFamily="IconFontTypes"
                                     Glyph="{x:Static helper:IconFontHelper.Search}"
                                     Size="18"
-                                    Color="Gray" />
+                                    Color="#D9D9D9" />
                             </Image.Source>
                         </Image>
 
                         <Label
                             Margin="10,0,0,0"
+                            Opacity="1"
                             Text="Search"
-                            TextColor="Gray"
+                            TextColor="#D9D9D9"
                             VerticalOptions="Center" />
                     </StackLayout>
-                </Frame>
+                </Border>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -111,7 +113,7 @@
                 <StackLayout WidthRequest="72">
                     <Button
                         Margin="10,0,0,0"
-                        BackgroundColor="#152c39"
+                        BackgroundColor="#40D9D9D9"
                         CornerRadius="45"
                         HeightRequest="54"
                         WidthRequest="54">
@@ -160,14 +162,14 @@
                                         StrokeThickness="3"
                                         VerticalOptions="End"
                                         WidthRequest="18" />
-                                    <Frame
+                                    <Border
                                         Padding="5,0,5,0"
                                         BackgroundColor="SkyBlue"
-                                        BorderColor="#152c39"
-                                        CornerRadius="10"
                                         HeightRequest="12"
                                         HorizontalOptions="End"
                                         IsVisible="{Binding IsAway}"
+                                        Stroke="#152c39"
+                                        StrokeShape="RoundRectangle 10,10,10,10"
                                         VerticalOptions="End">
                                         <Label
                                             FontSize="10"
@@ -175,7 +177,7 @@
                                             Text="{Binding AwayDuration}"
                                             TextColor="Black"
                                             VerticalOptions="Center" />
-                                    </Frame>
+                                    </Border>
                                 </Grid>
                                 <Label
                                     Margin="0,5,0,0"
@@ -217,14 +219,14 @@
                                         StrokeThickness="3"
                                         VerticalOptions="End"
                                         WidthRequest="18" />
-                                    <Frame
+                                    <Border
                                         Padding="5,0,5,0"
                                         BackgroundColor="SkyBlue"
-                                        BorderColor="#152c39"
-                                        CornerRadius="10"
                                         HeightRequest="12"
                                         HorizontalOptions="End"
                                         IsVisible="{Binding UserFriendInfo.IsAway}"
+                                        Stroke="#152c39"
+                                        StrokeShape="RoundRectangle 10,10,10,10"
                                         VerticalOptions="End">
                                         <Label
                                             FontSize="10"
@@ -232,7 +234,7 @@
                                             Text="{Binding UserFriendInfo.AwayDuration}"
                                             TextColor="Black"
                                             VerticalOptions="Center" />
-                                    </Frame>
+                                    </Border>
                                 </Grid>
 
                                 <StackLayout

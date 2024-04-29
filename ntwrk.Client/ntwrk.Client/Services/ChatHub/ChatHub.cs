@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ntwrk.Client.Services.ChatHub
+﻿namespace ntwrk.Client.Services.ChatHub
 {
     public class ChatHub
     {
@@ -16,7 +10,7 @@ namespace ntwrk.Client.Services.ChatHub
         public ChatHub(ServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            var devSslHelper = new DevHttpsConnectionHelper(sslPort: 7093);
+            var devSslHelper = new DevHttpsConnectionHelper(sslPort: 7136);
             hubConnection = new HubConnectionBuilder()
                 .WithUrl(devSslHelper.DevServerRootUrl + "/ChatHub", options =>
                 {
@@ -45,7 +39,7 @@ namespace ntwrk.Client.Services.ChatHub
             await hubConnection.InvokeAsync("SendMessageToUser", fromUserId, toUserId, message);
         }
 
-        public void AddReceivedMessageHandler(Action <int, string> handler)
+        public void AddReceivedMessageHandler(Action<int, string> handler)
         {
             onReceiveMessageHandler.Add(handler);
         }

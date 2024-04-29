@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ntwrk.Client.ViewModels
+﻿namespace ntwrk.Client.ViewModels
 {
-    public class ListChatPageViewModel: INotifyPropertyChanged, IQueryAttributable
+    public class ListChatPageViewModel : INotifyPropertyChanged, IQueryAttributable
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -69,7 +62,7 @@ namespace ntwrk.Client.ViewModels
             }
             else
             {
-                await AppShell.Current.DisplayAlert("ChatApp", response.StatusMessage, "OK");
+                await AppShell.Current.DisplayAlert("NTWRK", response.StatusMessage, "OK");
             }
         }
 
@@ -102,14 +95,14 @@ namespace ntwrk.Client.ViewModels
             {
                 UserId = userInfo.Id,
                 Content = message,
-                UserFriendInfo = UserFriends.Where(x=>x.Id == fromUserId).FirstOrDefault()
+                UserFriendInfo = UserFriends.Where(x => x.Id == fromUserId).FirstOrDefault()
             };
 
             LastestMessages.Insert(0, newLastestMessage);
             OnPropertyChanged("LastestMessages");
 
-            MessagingCenter.Send<string, string[]>("Notify", "MessageNotificationService", 
-                new string[] {newLastestMessage.UserFriendInfo.UserName, newLastestMessage.Content});
+            MessagingCenter.Send<string, string[]>("Notify", "MessageNotificationService",
+                new string[] { newLastestMessage.UserFriendInfo.UserName, newLastestMessage.Content });
         }
 
         public User UserInfo
@@ -131,11 +124,11 @@ namespace ntwrk.Client.ViewModels
 
         public bool IsRefreshing
         {
-            get { return isRefreshing; }    
+            get { return isRefreshing; }
             set { isRefreshing = value; OnPropertyChanged(); }
         }
 
-        public ICommand RefreshCommand { get; set; }        
+        public ICommand RefreshCommand { get; set; }
 
         public ICommand OpenChatPageCommand { get; set; }
     }

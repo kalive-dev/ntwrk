@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace ntwrk.Api.Functions.User
 {
@@ -19,12 +20,12 @@ namespace ntwrk.Api.Functions.User
         {
             try
             {
-                var entity = _ntwrkContext.TblUsers.SingleOrDefault(x=>x.LoginId == loginId);
+                var entity = _ntwrkContext.TblUsers.SingleOrDefault(x => x.LoginId == loginId);
                 if (entity == null) return null;
 
-                var isPasswordMatched = VertifyPassword (password, entity.StoredSalt, entity.Password);
+                var isPasswordMatched = VertifyPassword(password, entity.StoredSalt, entity.Password);
 
-                if (!isPasswordMatched ) return null;
+                if (!isPasswordMatched) return null;
 
                 var token = GenerateJwtToken(entity);
 
@@ -40,6 +41,69 @@ namespace ntwrk.Api.Functions.User
             {
                 return null;
             }
+        }
+        public User? Register(string loginId, string userName, string password)
+        {
+            // 1. Validate user input (optional)
+            if (string.IsNullOrEmpty(loginId) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                return null; // Or throw an exception for invalid input
+            }
+
+            // 2. Check for existing username
+            if (_ntwrkContext.TblUsers.Any(u => u.LoginId == loginId))
+            {
+                return null; // Username already exists
+            }
+
+            // 3. Generate a secure password hash and salt
+            byte[] salt = new byte[128 / 8];
+            using (var random = RandomNumberGenerator.Create())
+            {
+                random.GetBytes(salt);
+            }
+
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+              password: password,
+              salt: salt,
+              prf: KeyDerivationPrf.HMACSHA1,
+              iterationCount: 10000,
+              numBytesRequested: 256 / 8));
+
+            // 4. Create a new user entity
+            var newUser = new TblUser
+            {
+                UserName = userName,
+                LoginId = loginId,
+                Password = hashedPassword,
+                StoredSalt = salt,
+                AvatarSourceName = "default_user.png",
+                IsOnline = false,
+                LastLogonTime = DateTime.Now,
+            };
+
+            // 5. Add the new user to the database context
+            _ntwrkContext.TblUsers.Add(newUser);
+
+            // 6. Save changes to the database
+            try
+            {
+                _ntwrkContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Handle database saving exceptions
+                return null;
+            }
+            var token = GenerateJwtToken(newUser);
+            // 7. No need to return the newly created user with ID (auto-generated)
+            // Return a success message or redirect to a confirmation page (optional)
+            return new User
+            {
+                Id = newUser.Id,
+                UserName = newUser.UserName,
+                Token = token
+            };
         }
 
         public User GetUserById(int id)
@@ -63,7 +127,7 @@ namespace ntwrk.Api.Functions.User
             };
         }
 
-        
+
         private bool VertifyPassword(string enteredPassword, byte[] storedSalt, string storedPassword)
         {
             string encryptyedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
@@ -84,7 +148,7 @@ namespace ntwrk.Api.Functions.User
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
                 Expires = DateTime.Now.AddDays(1),
-                SigningCredentials = new SigningCredentials (
+                SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
