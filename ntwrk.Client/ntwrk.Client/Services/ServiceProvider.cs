@@ -52,6 +52,8 @@ using ntwrk.Client.Helpers;
 After:
 using System.Threading.Tasks;
 */
+using System.Net;
+
 namespace ntwrk.Client.Services
 {
     public class ServiceProvider
@@ -86,6 +88,7 @@ namespace ntwrk.Client.Services
 
                 if (result.StatusCode == 200)
                 {
+                    
                     _accessToken = result.Token;
                 }
                 return result;
@@ -134,6 +137,37 @@ namespace ntwrk.Client.Services
             }
         }
 
+        public async Task<SearchResponse> Search(SearchRequest request)
+        {
+            var httpRequestMessage = new HttpRequestMessage();
+            httpRequestMessage.Method = HttpMethod.Post;
+            httpRequestMessage.RequestUri = new Uri(_devSslHelper.DevServerRootUrl + "/Search/Search");
+            if (request != null)
+            {
+                string jsonContent = JsonConvert.SerializeObject(request);
+                var httpContent = new StringContent(jsonContent, encoding: Encoding.UTF8, "application/json");
+                httpRequestMessage.Content = httpContent;
+            }
+
+            try
+            {
+                var response = await _devSslHelper.HttpClient.SendAsync(httpRequestMessage);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var userList = JsonConvert.DeserializeObject<ObservableCollection<User>>(responseContent);
+                var result = new SearchResponse { Users = userList };
+                result.StatusCode = (int)response.StatusCode;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var result = new SearchResponse
+                {
+                    StatusCode = 500,
+                    StatusMessage = ex.Message
+                };
+                return result;
+            }
+        }
         public async Task<TResponse> CallWebApi<TRequest, TResponse>(
             string apiUrl, HttpMethod httpMethod, TRequest request) where TResponse : BaseResponse
         {

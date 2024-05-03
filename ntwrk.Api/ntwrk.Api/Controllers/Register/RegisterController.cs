@@ -1,6 +1,4 @@
-﻿using ntwrk.Api.Controllers.Authenticate;
-
-namespace ntwrk.Api.Controllers.Register
+﻿namespace ntwrk.Api.Controllers.Register
 {
     [ApiController]
     [Route("[controller]")]

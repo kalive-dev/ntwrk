@@ -44,13 +44,14 @@
                     VerticalOptions="Center">
                     <Button
                         BackgroundColor="#40D9D9D9"
+                        Command="{Binding OpenSearchPageCommand}"
                         CornerRadius="45"
                         HeightRequest="32"
                         WidthRequest="32">
                         <Button.ImageSource>
                             <FontImageSource
                                 FontFamily="IconFontTypes"
-                                Glyph="{x:Static helper:IconFontHelper.Camera_alt}"
+                                Glyph="{x:Static helper:IconFontHelper.Person_add}"
                                 Size="18" />
                         </Button.ImageSource>
                     </Button>
@@ -72,7 +73,7 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <Border
+                <!--<Border
                     Padding="0"
                     BackgroundColor="#40D9D9D9"
                     Stroke="Transparent"
@@ -94,7 +95,6 @@
                                     Color="#D9D9D9" />
                             </Image.Source>
                         </Image>
-
                         <Label
                             Margin="10,0,0,0"
                             Opacity="1"
@@ -102,7 +102,15 @@
                             TextColor="#D9D9D9"
                             VerticalOptions="Center" />
                     </StackLayout>
-                </Border>
+                </Border>-->
+                <HorizontalStackLayout>
+                    <SearchBar
+                        HeightRequest="48"
+                        Placeholder="Search"
+                        SearchCommand="{Binding SearchCommand}"
+                        SearchCommandParameter="{Binding SearchRequestData}"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -193,6 +201,7 @@
 
             <ListView
                 Grid.Row="3"
+                CachingStrategy="RecycleElement"
                 ItemsSource="{Binding LastestMessages}"
                 RowHeight="64"
                 SeparatorVisibility="None"

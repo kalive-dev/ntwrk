@@ -18,7 +18,7 @@
 
         [HttpPost("Initialize")]
         public async Task<ActionResult> Initialize([FromBody] int userId)
-        {   
+        {
             var response = new ListChatInitializeResponse
             {
                 User = _userFunction.GetUserById(userId),

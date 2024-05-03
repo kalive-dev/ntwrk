@@ -33,6 +33,10 @@
             {
                 await Shell.Current.GoToAsync($"ChatPage?fromUserId={UserInfo.Id}&toUserId={param}");
             });
+            OpenSearchPageCommand = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync($"SearchPage?userId={UserInfo.Id}");
+            });
 
             _serviceProvider = serviceProvider;
             _chatHub = chatHub;
@@ -57,8 +61,8 @@
             if (response.StatusCode == 200)
             {
                 UserInfo = response.User;
-                UserFriends = new ObservableCollection<User>(response.UserFriends);
-                LastestMessages = new ObservableCollection<LastestMessage>(response.LastestMessages);
+                UserFriends = new ObservableCollection<User>(response.UserFriends.OrderByDescending(f=>f.AwayDuration));
+                LastestMessages = new ObservableCollection<LastestMessage>(response.LastestMessages.OrderByDescending(l=>l.SendDateTime));
             }
             else
             {
@@ -131,5 +135,6 @@
         public ICommand RefreshCommand { get; set; }
 
         public ICommand OpenChatPageCommand { get; set; }
+        public ICommand OpenSearchPageCommand { get; set; }
     }
 }

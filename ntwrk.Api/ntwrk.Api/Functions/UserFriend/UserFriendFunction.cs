@@ -17,9 +17,21 @@
 
             var result = entities.Select(x => _userFunction.GetUserById(x.FriendId));
 
-            if (result ==null) result  = new List<User.User>();
+            if (result == null) result = new List<User.User>();
 
             return result;
+        }
+        public async Task<TblUserFriend?> AddFriend(int userId, int friendId)
+        {
+            if (_ntwrkContext.TblUserFriends.Any(f =>
+                (f.UserId == userId && f.FriendId == friendId)))
+            {
+                return null;
+            }
+            var entity = new TblUserFriend() { UserId = userId, FriendId = friendId };
+            _ntwrkContext.TblUserFriends.Add(entity);
+            await _ntwrkContext.SaveChangesAsync();
+            return entity;
         }
     }
 }

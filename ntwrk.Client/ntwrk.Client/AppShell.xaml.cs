@@ -9,7 +9,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("ListChatPage", typeof(ListChatPage));
         Routing.RegisterRoute("ChatPage", typeof(ChatPage));
         Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
-
+        Routing.RegisterRoute("SearchPage", typeof(SearchPage));
         this.CurrentItem = loginPage;
     }
 

@@ -30,7 +30,7 @@ namespace ntwrk.Client.ViewModels
             _chatHub.AddReceivedMessageHandler(OnReceiveMessage);
             _chatHub.Connect();
 
-            OpenListChatPageCommand = new Command(async () =>
+            GoBackCommand = new Command(async () =>
             {
                 await Shell.Current.Navigation.PopAsync();
             });
@@ -173,6 +173,6 @@ namespace ntwrk.Client.ViewModels
         }
 
         public ICommand SendMessageCommand { get; set; }
-        public ICommand OpenListChatPageCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
     }
 }

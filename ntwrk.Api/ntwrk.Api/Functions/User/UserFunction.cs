@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace ntwrk.Api.Functions.User
 {
@@ -26,9 +26,10 @@ namespace ntwrk.Api.Functions.User
                 var isPasswordMatched = VertifyPassword(password, entity.StoredSalt, entity.Password);
 
                 if (!isPasswordMatched) return null;
+                entity.LastLogonTime = DateTime.UtcNow;
 
                 var token = GenerateJwtToken(entity);
-
+                _ntwrkContext.SaveChangesAsync();
                 return new User
                 {
                     Id = entity.Id,
@@ -42,6 +43,36 @@ namespace ntwrk.Api.Functions.User
                 return null;
             }
         }
+        public async Task<IEnumerable<User>> Search(string SearchRequestData)
+        {
+            try
+            {
+                // Perform case-insensitive search (modify if needed)
+                var searchText = SearchRequestData.Trim().ToLower();
+
+                var entities = await _ntwrkContext.TblUsers
+                  .Where(user => user.UserName.ToLower().Contains(searchText)
+                                 || user.LoginId.ToLower().Contains(searchText)
+                                // Add more search criteria based on your User model properties
+                                )
+                  .ToListAsync();
+
+                return entities.Select(x => new User
+                {
+                    Id = x.Id,
+                    UserName = x.UserName,
+                    AvatarSourceName = x.AvatarSourceName,
+                    IsOnline = x.IsOnline,
+                    IsAway = !x.IsOnline
+                });
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions during data access
+                return null;
+            }
+        }
+
         public User? Register(string loginId, string userName, string password)
         {
             // 1. Validate user input (optional)

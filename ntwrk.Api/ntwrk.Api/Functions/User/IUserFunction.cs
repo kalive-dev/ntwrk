@@ -4,6 +4,7 @@
     {
         User? Authenticate(string loginId, string password);
         User? Register(string loginId, string userName, string password);
+        Task<IEnumerable<User>> Search(string SearchRequsestData);
         User GetUserById(int id);
     }
 }
