@@ -29,6 +29,7 @@
                 return null;
             }
             var entity = new TblUserFriend() { UserId = userId, FriendId = friendId };
+            entity = new TblUserFriend() { UserId = friendId, FriendId = userId }; // temporary solution(to do: friend request page)
             _ntwrkContext.TblUserFriends.Add(entity);
             await _ntwrkContext.SaveChangesAsync();
             return entity;

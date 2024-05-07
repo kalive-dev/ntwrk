@@ -6,7 +6,7 @@
     {
         private IUserFunction _userFunction;
         public SearchController(IUserFunction userFunction)
-        {
+        {   
             _userFunction = userFunction;
         }
         [HttpPost("Search")]
@@ -15,6 +15,16 @@
             var response = await _userFunction.Search(request.SearchRequestData);
             if (response == null)
                 return BadRequest(new { StatusMessage = "something in the way..." });
+
+            return Ok(response);
+
+        }
+        [HttpPost("GetUserById")]
+        public IActionResult GetUserById(SearchRequest request)
+        {
+            var response = _userFunction.GetUserById((Convert.ToInt32(request.SearchRequestData)));
+            if (response == null)
+                return BadRequest();
 
             return Ok(response);
 

@@ -131,6 +131,8 @@
                     <VerticalStackLayout>
                         <Entry
                             Placeholder="Aa"
+                            ReturnCommand="{Binding SendMessageCommand}"
+                            ReturnType="Send"
                             Text="{Binding Message}"
                             TextColor="Black"
                             VerticalOptions="Center" />
@@ -145,6 +147,7 @@
                     CornerRadius="45"
                     HeightRequest="32"
                     WidthRequest="32">
+
                     <Button.ImageSource>
                         <FontImageSource
                             FontFamily="IconFontTypes"

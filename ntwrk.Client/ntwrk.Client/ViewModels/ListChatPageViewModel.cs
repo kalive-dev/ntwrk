@@ -37,7 +37,15 @@
             {
                 await Shell.Current.GoToAsync($"SearchPage?userId={UserInfo.Id}");
             });
-
+            OpenEditPageCommand = new Command(async () =>
+            {
+                MessagingCenter.Send<User>(userInfo, "UserInfoMessage");
+                await Shell.Current.GoToAsync($"EditProfilePage");
+            });
+            DisplayAlertCommand = new Command<string>(async (param) =>
+            {
+                await AppShell.Current.DisplayAlert("NTWRK", param, "OK");
+            });
             _serviceProvider = serviceProvider;
             _chatHub = chatHub;
             _chatHub.Connect();
@@ -61,8 +69,8 @@
             if (response.StatusCode == 200)
             {
                 UserInfo = response.User;
-                UserFriends = new ObservableCollection<User>(response.UserFriends.OrderByDescending(f=>f.AwayDuration));
-                LastestMessages = new ObservableCollection<LastestMessage>(response.LastestMessages.OrderByDescending(l=>l.SendDateTime));
+                UserFriends = new ObservableCollection<User>(response.UserFriends.OrderByDescending(f => f.AwayDuration));
+                LastestMessages = new ObservableCollection<LastestMessage>(response.LastestMessages.OrderByDescending(l => l.SendDateTime));
             }
             else
             {
@@ -136,5 +144,7 @@
 
         public ICommand OpenChatPageCommand { get; set; }
         public ICommand OpenSearchPageCommand { get; set; }
+        public ICommand OpenEditPageCommand { get; set; }
+        public ICommand DisplayAlertCommand { get; set; }
     }
 }

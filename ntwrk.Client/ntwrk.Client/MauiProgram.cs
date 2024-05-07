@@ -33,6 +33,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<ServiceProvider>();
         builder.Services.AddSingleton<SearchPage>();
         builder.Services.AddSingleton<SearchPageViewModel>();
+        builder.Services.AddSingleton<EditProfilePage>();
+        builder.Services.AddSingleton<EditProfilePageViewModel>();
 
         return builder.Build();
     }
