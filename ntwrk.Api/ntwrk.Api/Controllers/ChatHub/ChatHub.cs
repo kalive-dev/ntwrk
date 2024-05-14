@@ -1,6 +1,6 @@
 ﻿namespace ntwrk.Api.Controllers.ChatHub
 {
-    public class ChatHub:Hub
+    public class ChatHub : Hub
     {
         UserOperator _userOperator;
         IMessageFunction _messageFunction;
@@ -10,7 +10,7 @@
         public ChatHub(UserOperator userOperator, IMessageFunction messageFunction)
         {
             _userOperator = userOperator;
-            _messageFunction = messageFunction; 
+            _messageFunction = messageFunction;
         }
 
         public async Task SendMessage(string message)
@@ -20,13 +20,13 @@
 
         public async Task SendMessageToUser(int fromUserId, int toUserId, string message)
         {
-            var connectionIds = _connectionMapping.Where(x=>x.Key == toUserId)
-                                                    .Select(x=>x.Value).ToList();
+            var connectionIds = _connectionMapping.Where(x => x.Key == toUserId)
+                                                    .Select(x => x.Value).ToList();
 
             await _messageFunction.AddMessage(fromUserId, toUserId, message);
 
             await Clients.Clients(connectionIds)
-                .SendAsync("ReceiveMessage", fromUserId,  message);
+                .SendAsync("ReceiveMessage", fromUserId, message);
         }
 
         public override Task OnConnectedAsync()

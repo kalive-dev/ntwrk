@@ -29,7 +29,9 @@ public class DevHttpsConnectionHelper
     public HttpMessageHandler? GetPlatformMessageHandler()
     {
 #if WINDOWS
-        return null;
+        // Create a basic HttpClientHandler for Windows
+        var handler = new HttpClientHandler();
+        return handler;
 #elif ANDROID
         var handler = new CustomAndroidMessageHandler();
         handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>

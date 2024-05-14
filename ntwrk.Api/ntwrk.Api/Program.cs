@@ -1,4 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
 using ntwrk.Api.Controllers.ChatHub;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace ntwrk.Client.ViewModels
+﻿namespace ntwrk.Client.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
@@ -40,7 +31,7 @@ namespace ntwrk.Client.ViewModels
             this._serviceProvider = serviceProvider;
         }
 
-        async Task Login()
+        public async Task Login()
         {
             try
             {
@@ -53,15 +44,16 @@ namespace ntwrk.Client.ViewModels
                 if (response.StatusCode == 200)
                 {
                     await Shell.Current.GoToAsync($"ListChatPage?userId={response.Id}");
+
                 }
                 else
                 {
-                    await AppShell.Current.DisplayAlert("ChatApp", response.StatusMessage, "OK");
+                    await AppShell.Current.DisplayAlert("NTWRK", response.StatusMessage, "OK");
                 }
             }
             catch (Exception ex)
             {
-                await AppShell.Current.DisplayAlert("ChatApp", ex.Message, "OK");
+                await AppShell.Current.DisplayAlert("NTWRK", ex.Message, "OK");
             }
         }
 

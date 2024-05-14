@@ -5,40 +5,46 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:ntwrk.Client.ViewModels"
     Title="LoginPage"
-    Background="#13232f">
+    Background="#1B1E21">
     <Grid>
         <VerticalStackLayout Margin="30" VerticalOptions="Center">
             <Label
+                FontFamily="JosefinSansBold"
                 FontSize="45"
                 HorizontalOptions="Center"
-                Text="ChatApp" />
+                Text="NTWRK" />
 
             <Label
                 FontSize="20"
                 HorizontalOptions="Center"
-                Text="With SignalR" />
+                Text="your network" />
 
             <Frame
                 Margin="0,45,0,0"
                 Padding="10,0,10,0"
                 BorderColor="Transparent">
-                <Entry
-                    Placeholder="User name"
-                    ReturnType="Go"
-                    Text="{Binding UserName}"
-                    TextColor="Black" />
+                <VerticalStackLayout>
+                    <Entry
+                        Placeholder="User name"
+                        ReturnType="Go"
+                        Text="{Binding UserName}"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+
             </Frame>
 
             <Frame
                 Margin="0,10,0,0"
                 Padding="10,0,10,0"
                 BorderColor="Transparent">
-                <Entry
-                    IsPassword="True"
-                    Placeholder="Password"
-                    ReturnType="Go"
-                    Text="{Binding Password}"
-                    TextColor="Black" />
+                <VerticalStackLayout>
+                    <Entry
+                        IsPassword="True"
+                        Placeholder="Password"
+                        ReturnType="Go"
+                        Text="{Binding Password}"
+                        TextColor="Black" />
+                </VerticalStackLayout>
             </Frame>
 
             <Label
@@ -48,21 +54,13 @@
 
             <Button
                 Margin="0,30,0,0"
-                Background="#f0932b"
+                Background="#383F4D"
                 Command="{Binding LoginCommand}"
                 Text="Login"
                 TextColor="White" />
 
-            <HorizontalStackLayout Margin="0,50,0,0" HorizontalOptions="Center">
-                <Line
-                    BackgroundColor="Gray"
-                    HeightRequest="0.5"
-                    WidthRequest="60" />
+            <!--<HorizontalStackLayout Margin="0,50,0,0" HorizontalOptions="Center">
                 <Label Margin="10,0,10,0" Text="Or continue with" />
-                <Line
-                    BackgroundColor="Gray"
-                    HeightRequest="0.5"
-                    WidthRequest="60" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Margin="0,30,0,0" HorizontalOptions="Center">
@@ -78,14 +76,19 @@
                         Source="apple_logo.png"
                         WidthRequest="32" />
                 </Frame>
-            </HorizontalStackLayout>
+            </HorizontalStackLayout>-->
 
             <HorizontalStackLayout Margin="0,40,0,0" HorizontalOptions="Center">
-                <Label Text="Not a members?" />
+                <Label Text="Still don’t have an account?" />
                 <Label
+                    x:Name="registerLabel"
                     Margin="5,0,0,0"
                     Text="Register now"
-                    TextColor="#1e90ff" />
+                    TextColor="#1e90ff">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRegisterLabelTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

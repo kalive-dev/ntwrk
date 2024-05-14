@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ntwrk.Api.Controllers.Message
+﻿namespace ntwrk.Api.Controllers.Message
 {
     [ApiController]
     [Route("[controller]")]
@@ -18,12 +16,12 @@ namespace ntwrk.Api.Controllers.Message
         }
 
         [HttpPost("Initialize")]
-        public async Task<ActionResult> Initialize([FromBody  ] MessageInitalizeRequest request)
+        public async Task<ActionResult> Initialize([FromBody] MessageInitalizeRequest request)
         {
             var response = new MessageInitalizeResponse
             {
                 FriendInfo = _userFunction.GetUserById(request.ToUserId),
-                Messages =await _messageFunction.GetMessages(request.FromUserId, request.ToUserId)
+                Messages = await _messageFunction.GetMessages(request.FromUserId, request.ToUserId)
             };
 
             return Ok(response);

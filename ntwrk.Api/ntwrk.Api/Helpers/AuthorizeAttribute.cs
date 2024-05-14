@@ -7,7 +7,7 @@
             var user = context.HttpContext?.Items["User"] as User;
             if (user == null)
             {
-                context.Result = new JsonResult(new { StatusMessage = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized};
+                context.Result = new JsonResult(new { StatusMessage = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
         }
     }
