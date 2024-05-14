@@ -20,9 +20,9 @@
 
         }
         [HttpPost("GetUserById")]
-        public IActionResult GetUserById(SearchRequest request)
+        public IActionResult GetUserById(SearchByIdRequest request)
         {
-            var response = _userFunction.GetUserById((Convert.ToInt32(request.SearchRequestData)));
+            var response = _userFunction.GetUserById(request.searchRequestData);
             if (response == null)
                 return BadRequest();
 

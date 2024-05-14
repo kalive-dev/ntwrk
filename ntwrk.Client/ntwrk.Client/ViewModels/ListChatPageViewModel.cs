@@ -14,6 +14,7 @@
         public ListChatPageViewModel(ServiceProvider serviceProvider, ChatHub chatHub)
         {
             UserInfo = new User();
+
             UserFriends = new ObservableCollection<User>();
             LastestMessages = new ObservableCollection<LastestMessage>();
 
@@ -39,8 +40,7 @@
             });
             OpenEditPageCommand = new Command(async () =>
             {
-                MessagingCenter.Send<User>(userInfo, "UserInfoMessage");
-                await Shell.Current.GoToAsync($"EditProfilePage");
+                await Shell.Current.GoToAsync($"EditProfilePage?userId={UserInfo.Id}");
             });
             DisplayAlertCommand = new Command<string>(async (param) =>
             {

@@ -150,6 +150,7 @@ namespace ntwrk.Api.Functions.User
             {
                 UserName = entity.UserName,
                 Id = entity.Id,
+                LoginId = entity.LoginId,
                 AvatarSourceName = entity.AvatarSourceName,
                 IsAway = awayDuration != "" ? true : false,
                 AwayDuration = awayDuration,

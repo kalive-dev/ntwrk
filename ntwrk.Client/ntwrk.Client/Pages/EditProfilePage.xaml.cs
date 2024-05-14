@@ -7,8 +7,8 @@ public partial class EditProfilePage : ContentPage
         InitializeComponent();
         this.BindingContext = viewModel;
     }
-    //private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
-    //{
-    //    (this.BindingContext as EditProfilePageViewModel).Initialize();
-    //}
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        (this.BindingContext as EditProfilePageViewModel).Initialize();
+    }
 }
