@@ -4,8 +4,8 @@
 This project is a cross-platform messenger designed for fast and secure text communication between users. The goal was to develop a user-friendly application that works seamlessly on both Windows and Android with real-time message synchronization.
 
 **Key Features:**
-_
-Cross-platform compatibility – available on Windows and Android._
+
+Cross-platform compatibility – available on Windows and Android.
 
 Message synchronization – real-time chat updates across devices.
 
