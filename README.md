@@ -1,5 +1,5 @@
-**Cross-Platform Messenger**
-
+****Cross-Platform Messenger**
+**
 **Project Description:**
 This project is a cross-platform messenger designed for fast and secure text communication between users. The goal was to develop a user-friendly application that works seamlessly on both Windows and Android with real-time message synchronization.
 
