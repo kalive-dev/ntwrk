@@ -1,6 +1,6 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ntwrk.Api.Helpers
 {
@@ -24,7 +24,7 @@ namespace ntwrk.Api.Helpers
             await _next(context);
         }
 
-        private void AttachUserToContext(HttpContext context , IUserFunction userFunction, string token)
+        private void AttachUserToContext(HttpContext context, IUserFunction userFunction, string token)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace ntwrk.Api.Helpers
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey (key),
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ClockSkew = TimeSpan.Zero

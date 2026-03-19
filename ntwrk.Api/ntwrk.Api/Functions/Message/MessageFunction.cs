@@ -1,6 +1,4 @@
-﻿using ntwrk.Api.Entities;
-
-namespace ntwrk.Api.Functions.Message
+﻿namespace ntwrk.Api.Functions.Message
 {
     public class MessageFunction : IMessageFunction
     {
@@ -65,7 +63,7 @@ namespace ntwrk.Api.Functions.Message
             var entities = await _ntwrkContext.TblMessages
                 .Where(x => (x.FromUserId == fromUserId && x.ToUserId == toUserId)
                     || (x.FromUserId == toUserId && x.ToUserId == fromUserId))
-                .OrderBy(x=>x.SendDateTime)
+                .OrderBy(x => x.SendDateTime)
                 .ToListAsync();
 
             return entities.Select(x => new Message

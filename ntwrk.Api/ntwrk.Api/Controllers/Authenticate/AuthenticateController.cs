@@ -1,7 +1,4 @@
-﻿using ntwrk.Api.Functions.User;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ntwrk.Api.Controllers.Authenticate
+﻿namespace ntwrk.Api.Controllers.Authenticate
 {
     [ApiController]
     [Route("[controller]")]

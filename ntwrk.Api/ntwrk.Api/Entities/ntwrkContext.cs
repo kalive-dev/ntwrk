@@ -1,10 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace ntwrk.Api.Entities
 {
-    public class ntwrkContext:DbContext
+    public class ntwrkContext : DbContext
     {
-        public ntwrkContext(DbContextOptions<ntwrkContext> options) :base (options)
+        public ntwrkContext(DbContextOptions<ntwrkContext> options) : base(options)
         { }
 
         public virtual DbSet<TblUser> TblUsers { get; set; } = null!;

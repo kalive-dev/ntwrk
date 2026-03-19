@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ntwrk.Client.ViewModels
+﻿namespace ntwrk.Client.ViewModels
 {
-    public class ListChatPageViewModel: INotifyPropertyChanged, IQueryAttributable
+    public class ListChatPageViewModel : INotifyPropertyChanged, IQueryAttributable
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -40,7 +33,19 @@ namespace ntwrk.Client.ViewModels
             {
                 await Shell.Current.GoToAsync($"ChatPage?fromUserId={UserInfo.Id}&toUserId={param}");
             });
-
+            OpenSearchPageCommand = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync($"SearchPage?userId={UserInfo.Id}");
+            });
+            OpenEditPageCommand = new Command(async () =>
+            {
+                MessagingCenter.Send<User>(userInfo, "UserInfoMessage");
+                await Shell.Current.GoToAsync($"EditProfilePage");
+            });
+            DisplayAlertCommand = new Command<string>(async (param) =>
+            {
+                await AppShell.Current.DisplayAlert("NTWRK", param, "OK");
+            });
             _serviceProvider = serviceProvider;
             _chatHub = chatHub;
             _chatHub.Connect();
@@ -64,12 +69,12 @@ namespace ntwrk.Client.ViewModels
             if (response.StatusCode == 200)
             {
                 UserInfo = response.User;
-                UserFriends = new ObservableCollection<User>(response.UserFriends);
-                LastestMessages = new ObservableCollection<LastestMessage>(response.LastestMessages);
+                UserFriends = new ObservableCollection<User>(response.UserFriends.OrderByDescending(f => f.AwayDuration));
+                LastestMessages = new ObservableCollection<LastestMessage>(response.LastestMessages.OrderByDescending(l => l.SendDateTime));
             }
             else
             {
-                await AppShell.Current.DisplayAlert("ChatApp", response.StatusMessage, "OK");
+                await AppShell.Current.DisplayAlert("NTWRK", response.StatusMessage, "OK");
             }
         }
 
@@ -102,14 +107,14 @@ namespace ntwrk.Client.ViewModels
             {
                 UserId = userInfo.Id,
                 Content = message,
-                UserFriendInfo = UserFriends.Where(x=>x.Id == fromUserId).FirstOrDefault()
+                UserFriendInfo = UserFriends.Where(x => x.Id == fromUserId).FirstOrDefault()
             };
 
             LastestMessages.Insert(0, newLastestMessage);
             OnPropertyChanged("LastestMessages");
 
-            MessagingCenter.Send<string, string[]>("Notify", "MessageNotificationService", 
-                new string[] {newLastestMessage.UserFriendInfo.UserName, newLastestMessage.Content});
+            MessagingCenter.Send<string, string[]>("Notify", "MessageNotificationService",
+                new string[] { newLastestMessage.UserFriendInfo.UserName, newLastestMessage.Content });
         }
 
         public User UserInfo
@@ -131,12 +136,15 @@ namespace ntwrk.Client.ViewModels
 
         public bool IsRefreshing
         {
-            get { return isRefreshing; }    
+            get { return isRefreshing; }
             set { isRefreshing = value; OnPropertyChanged(); }
         }
 
-        public ICommand RefreshCommand { get; set; }        
+        public ICommand RefreshCommand { get; set; }
 
         public ICommand OpenChatPageCommand { get; set; }
+        public ICommand OpenSearchPageCommand { get; set; }
+        public ICommand OpenEditPageCommand { get; set; }
+        public ICommand DisplayAlertCommand { get; set; }
     }
 }

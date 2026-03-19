@@ -12,15 +12,15 @@ using ntwrk.Api.Entities;
 namespace ntwrk.Api.Migrations
 {
     [DbContext(typeof(ntwrkContext))]
-    [Migration("20240409075129_init")]
-    partial class init
+    [Migration("20240427181745_m1")]
+    partial class m1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

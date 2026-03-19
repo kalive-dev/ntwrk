@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ntwrk.Client.Pages.EditProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:ntwrk.Client.Helpers"
+    xmlns:viewModels="clr-namespace:ntwrk.Client.ViewModels"
+    Title="Edit"
+    Background="#1B1E21">
+    <ContentPage.IconImageSource>
+        <FontImageSource
+            FontFamily="IconFontTypes"
+            Glyph="{x:Static helper:IconFontHelper.Messenger}"
+            Size="20" />
+    </ContentPage.IconImageSource>
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid>
+                <StackLayout
+                    Margin="0,10,0,0"
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+                    <Button
+                        Margin="10,0,0,0"
+                        BackgroundColor="#40D9D9D9"
+                        Command="{Binding GoBackCommand}"
+                        CornerRadius="45"
+                        HeightRequest="32"
+                        WidthRequest="32">
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="IconFontTypes"
+                                Glyph="{x:Static helper:IconFontHelper.Arrow_back_ios_new}"
+                                Size="18" />
+                        </Button.ImageSource>
+                    </Button>
+                </StackLayout>
+                <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                    <Label
+                        Margin="10,0,10,0"
+                        FontAttributes="Bold"
+                        FontFamily="JosefinSansBold"
+                        FontSize="20"
+                        Text="{Binding UserInfo.UserName}"
+                        VerticalOptions="Center" />
+                    <Image
+                        HeightRequest="32"
+                        Source="{Binding UserInfo.AvatarSourceName}"
+                        VerticalOptions="Center"
+                        WidthRequest="32" />
+                </StackLayout>
+            </Grid>
+            <!--  Additional entries for editing profile  -->
+            <VerticalStackLayout Margin="30">
+                <Frame
+                    Margin="0,45,0,0"
+                    Padding="10,0,10,0"
+                    BorderColor="Transparent">
+                    <VerticalStackLayout>
+                        <Entry
+                            Placeholder="{Binding UserInfo.UserName}"
+                            ReturnType="Go"
+                            TextColor="Black" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,10,0,0"
+                    Padding="10,0,10,0"
+                    BorderColor="Transparent">
+                    <VerticalStackLayout>
+                        <Entry
+                            Placeholder="Login"
+                            ReturnType="Go"
+                            Text="{Binding LoginId}"
+                            TextColor="Black" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!--  Save button  -->
+                <Button
+                    Grid.Row="4"
+                    Margin="10,0,10,0"
+                    BackgroundColor="#2ECC71"
+                    Command="{Binding SaveChangesCommand}"
+                    CornerRadius="5"
+                    HeightRequest="40"
+                    Text="Save Changes"
+                    TextColor="White" />
+            </VerticalStackLayout>
+        </Grid>
+    </RefreshView>
+</ContentPage>

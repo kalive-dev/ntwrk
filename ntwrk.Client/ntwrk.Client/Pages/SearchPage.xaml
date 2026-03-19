@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ntwrk.Client.Pages.SearchPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:ntwrk.Client.Helpers"
+    xmlns:viewModels="clr-namespace:ntwrk.Client.ViewModels"
+    Title="Search"
+    Background="#1B1E21">
+    <ContentPage.IconImageSource>
+        <FontImageSource
+            FontFamily="IconFontTypes"
+            Glyph="{x:Static helper:IconFontHelper.Messenger}"
+            Size="20" />
+    </ContentPage.IconImageSource>
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackLayout
+                Margin="0,10,0,0"
+                HorizontalOptions="Start"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <Button
+                    Margin="10,0,0,0"
+                    BackgroundColor="#40D9D9D9"
+                    Command="{Binding GoBackCommand}"
+                    CornerRadius="45"
+                    HeightRequest="32"
+                    WidthRequest="32">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="IconFontTypes"
+                            Glyph="{x:Static helper:IconFontHelper.Arrow_back_ios_new}"
+                            Size="18" />
+                    </Button.ImageSource>
+                </Button>
+                <SearchBar
+                    Placeholder="Search"
+                    SearchCommand="{Binding SearchCommand}"
+                    Text="{Binding SearchRequestData}" />
+            </StackLayout>
+
+
+            <!--<CollectionView
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                ItemsSource="{Binding UserFriends}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Grid HeightRequest="54" WidthRequest="58">
+                                <Image
+                                    HeightRequest="54"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding AvatarSourceName}"
+                                    WidthRequest="54">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=OpenChatPageCommand, Source={RelativeSource AncestorType={x:Type viewModels:ListChatPageViewModel}}}" CommandParameter="{Binding Id}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Ellipse
+                                    Fill="Green"
+                                    HeightRequest="18"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding IsOnline}"
+                                    Stroke="#152c39"
+                                    StrokeThickness="3"
+                                    VerticalOptions="End"
+                                    WidthRequest="18" />
+                                <Border
+                                    Padding="5,0,5,0"
+                                    BackgroundColor="SkyBlue"
+                                    HeightRequest="12"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding IsAway}"
+                                    Stroke="#152c39"
+                                    StrokeShape="RoundRectangle 10,10,10,10"
+                                    VerticalOptions="End">
+                                    <Label
+                                        FontSize="10"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding AwayDuration}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                </Border>
+                            </Grid>
+                            <Label
+                                Margin="0,5,0,0"
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding UserName}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+            <ListView
+                Grid.Row="3"
+                CachingStrategy="RecycleElement"
+                ItemsSource="{Binding ReceivedUsers}"
+                RowHeight="64"
+                SeparatorVisibility="None"
+                VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <HorizontalStackLayout>
+                                <!--<HorizontalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=OpenChatPageCommand, Source={RelativeSource AncestorType={x:Type viewModels:SearchPageViewModel}}}" CommandParameter="{Binding Id}" />
+                                </HorizontalStackLayout.GestureRecognizers>-->
+                                <Grid HeightRequest="54" WidthRequest="58">
+                                    <Image
+                                        HeightRequest="54"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding AvatarSourceName}"
+                                        WidthRequest="54" />
+                                    <Ellipse
+                                        Fill="Green"
+                                        HeightRequest="18"
+                                        HorizontalOptions="End"
+                                        IsVisible="{Binding IsOnline}"
+                                        Stroke="#152c39"
+                                        StrokeThickness="3"
+                                        VerticalOptions="End"
+                                        WidthRequest="18" />
+                                    <Border
+                                        Padding="5,0,5,0"
+                                        BackgroundColor="SkyBlue"
+                                        HeightRequest="12"
+                                        HorizontalOptions="End"
+                                        IsVisible="{Binding IsAway}"
+                                        Stroke="#152c39"
+                                        StrokeShape="RoundRectangle 10,10,10,10"
+                                        VerticalOptions="End" />
+                                </Grid>
+
+                                <StackLayout
+                                    Margin="10,5,0,0"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontSize="17"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding UserName}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout
+                                    Margin="0,5,0,0"
+                                    HorizontalOptions="EndAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Center">
+                                    <Button
+                                        Margin="10,0,0,0"
+                                        BackgroundColor="#40D9D9D9"
+                                        Command="{Binding Path=AddFriendCommand, Source={RelativeSource AncestorType={x:Type viewModels:SearchPageViewModel}}}"
+                                        CommandParameter="{Binding Id}"
+                                        CornerRadius="45"
+                                        HeightRequest="32"
+                                        WidthRequest="32">
+                                        <Button.ImageSource>
+                                            <FontImageSource
+                                                FontFamily="IconFontTypes"
+                                                Glyph="{x:Static helper:IconFontHelper.Person_add}"
+                                                Size="18" />
+                                        </Button.ImageSource>
+                                    </Button>
+                                    <Button
+                                        Margin="10,0,0,0"
+                                        BackgroundColor="#40D9D9D9"
+                                        Command="{Binding Path=OpenChatPageCommand, Source={RelativeSource AncestorType={x:Type viewModels:SearchPageViewModel}}}"
+                                        CommandParameter="{Binding Id}"
+                                        CornerRadius="45"
+                                        HeightRequest="32"
+                                        WidthRequest="32">
+                                        <Button.ImageSource>
+                                            <FontImageSource
+                                                FontFamily="IconFontTypes"
+                                                Glyph="{x:Static helper:IconFontHelper.Chat}"
+                                                Size="18" />
+                                        </Button.ImageSource>
+                                    </Button>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </RefreshView>
+</ContentPage>
